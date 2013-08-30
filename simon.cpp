@@ -979,7 +979,7 @@ void diff_BB(u64 leftDiff, u64 rightDiff, int round, double prob) {
  		out_diffs[diff] += prob;
  		if (out_diffs[diff] > best_prob) {
  			best_prob = out_diffs[diff];
- 			//printf("New best %016llx %016llx   prob. : 2^{%f}\n", diff.first, diff.second, log2(best_prob));
+ 			printf("New best %016llx %016llx   prob. : 2^{%f}\n", diff.first, diff.second, log2(best_prob));
  			best_outdiff = diff;
  		}
 		return;
@@ -1088,16 +1088,7 @@ void test_H() {
 	}
 }
 
-int main() {
-	rng.seed(time(NULL)); // seed marsenne twister rng
-
-	//u64 x = 0xaece; //1010 1110 1100 1110
-	//printf("%d\n",  weight(((x^(rotate(x,7)))&x)|( rotate(x,14) ))  );
-
-	//test_H();
-
-	diff_BB(0x0001, 0x0000, 0, 1.0);
-
+void check_diff_effect() {
 	std::pair<u64,u64> beta;
 	for (std::map<std::pair<u64,u64>, std::map<int, u64>>::iterator it = prob_counts.begin(); it != prob_counts.end(); ++it) {
 		beta = it->first;
@@ -1112,11 +1103,15 @@ int main() {
 			printf("\n");
 		}
 	}
+}
+
+int main() {
+	rng.seed(time(NULL)); // seed marsenne twister rng
+
+	diff_BB(0x0001, 0x0000, 0, 1.0);
 	
 	//test_differential(0x0001, 0x0000, 0x1501, 0x0404, 6);
 	//diff_attack        (0x0001, 0x0000, 0x0201, 0x0100, 13);
-
-	//printf("== SIMON %d/%d ==\n\n", 2*BLOCK_SIZE, KEY_WORDS*BLOCK_SIZE);
 	
 	//std::string a(BLOCK_SIZE, '0'); //a[BLOCK_SIZE-1] = '1';
 	//std::string b(BLOCK_SIZE, '0'); b[BLOCK_SIZE-8] = '1';
@@ -1143,5 +1138,6 @@ int main() {
 	//test_rotational();
 	//run_test_vectors();
 	//test_enc();
+
 	return 0;
 }
