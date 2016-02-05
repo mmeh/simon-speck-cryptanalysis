@@ -7,7 +7,7 @@ Authors
 -------
 This SIMON implementation and all cryptanalytic routines found in "simon.h" and "simon.cpp" were written by 
 
-* Martin M. Lauridsen   (mmeh@dtu.dk) and 
+* Martin M. Lauridsen   (mail at martinlauridsen dot info) and 
 * Hoda A. Alkhzaimi		(hoalk@dtu.dk)
 
 DTU Compute  
